@@ -1,0 +1,12 @@
+.field {
+	border: 1px solid #000;
+	display: grid;
+	grid-template: repeat(3, 1fr) / repeat(3, 1fr);
+	margin-bottom: 30px;
+}
+
+.button {
+	aspect-ratio: 1/1;
+	border:1px solid #000;
+	background-color: #f8ca74;
+}

@@ -1,0 +1,17 @@
+.game {
+	width: 500px;
+	margin: 100px auto 0;
+	padding: 10px 30px;
+	border: 2px solid #000;
+	text-align: center;
+	background-color: #aa875a;
+}
+
+.restart-button {
+	font-size: 26px;
+	margin-bottom: 20px;
+	padding: 10px 18px;
+	background-color: #82fc7b;
+	border: 1px solid #000;
+	border-radius: 7px;
+}
