@@ -2,15 +2,21 @@ import Field from '../Field/Field'
 import Information from '../Information/Information'
 import styles from './Game.module.css'
 import { useState } from 'react'
+import PropTypes from 'prop-types'
 
-const GameLayout = (states) => {
+const GameLayout = ({states, onClick}) => {
 	return (
 		<div className={styles.game}>
 			<Information {...states} />
 			<Field {...states} />
-			<button className={styles['restart-button']}>Начать заново</button>
+			<button className={styles['restart-button']} type='button' onClick={onClick}>Начать заново</button>
 		</div>
 	)
+}
+
+GameLayout.propTypes = {
+	states: PropTypes.object,
+	onClick: PropTypes.func
 }
 
 const Game = () => {
@@ -18,6 +24,7 @@ const Game = () => {
 	const [isGameEnded, setIsGameEnded] = useState(false)
 	const [isDraw, setIsDraw] = useState(false)
 	const [field, setField] = useState(['', '', '', '', '', '', '', '', ''])
+
 	const states = {
 		currentPlayer,
 		setCurrentPlayer,
@@ -28,24 +35,15 @@ const Game = () => {
 		field,
 		setField,
 	}
-	const WIN_PATTERNS = [
-		[0, 1, 2],
-		[3, 4, 5],
-		[6, 7, 8],
-		[0, 3, 6],
-		[1, 4, 7],
-		[2, 5, 8],
-		[0, 4, 8],
-		[2, 4, 6],
-	]
 
-const win = WIN_PATTERNS.some(pattern => {
-	return pattern.every(value => field[value] === currentPlayer)
-})
+	const handleClick = () => {
+		setCurrentPlayer('X')
+		setIsGameEnded(false)
+		setIsDraw(false)
+		setField(['', '', '', '', '', '', '', '', ''])
+	}
 
-console.log(win)
-
-	return <GameLayout {...states} />
+	return <GameLayout states={states} onClick={handleClick} />
 }
 
 export default Game

@@ -1,3 +1,5 @@
+import PropTypes from "prop-types"
+
 const InformationLayout = ({ text }) => {
 	return (
 		<div>
@@ -6,17 +8,25 @@ const InformationLayout = ({ text }) => {
 	)
 }
 
+InformationLayout.propTypes = {
+	text: PropTypes.string
+}
+
 const Information = (states) => {
 	const { isDraw, isGameEnded, currentPlayer } = states
 
 	const text =
 		isDraw === true
 			? 'Ничья'
-			: isDraw === false && isGameEnded === false
-				? `Ходит: ${currentPlayer}`
-				: `Победил: ${currentPlayer}`
+			: isDraw === false && isGameEnded === true
+				? `Победил: ${currentPlayer}`
+				:	`Ходит: ${currentPlayer}`
 
 	return <InformationLayout text={text} />
+}
+
+Information.propTypes = {
+	states: PropTypes.object
 }
 
 export default Information
