@@ -1,4 +1,6 @@
 import PropTypes from "prop-types"
+import store from '../../store'
+import { useState, useEffect } from 'react'
 
 const InformationLayout = ({ text }) => {
 	return (
@@ -12,8 +14,14 @@ InformationLayout.propTypes = {
 	text: PropTypes.string
 }
 
-const Information = (states) => {
-	const { isDraw, isGameEnded, currentPlayer } = states
+const Information = () => {
+	const [currentState, setCurrentState] = useState(store.getState())
+	const { isDraw, isGameEnded, currentPlayer } = currentState
+
+
+	useEffect(() => {
+		store.subscribe(() => setCurrentState(store.getState()))
+	}, [])
 
 	const text =
 		isDraw === true
